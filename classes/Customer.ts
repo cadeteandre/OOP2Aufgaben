@@ -1,9 +1,17 @@
 class Customer {
-    private _name: string = '';
-    private _email: string = '';
-    private _address: string = '';
-    private _postalCode: string = '';
-    private _city: string = '';
+    private _name: string;
+    private _email: string;
+    private _address: string;
+    private _postalCode: string;
+    private _city: string;
+
+    constructor(name: string, email: string, address: string, postalCode: string, city: string) {
+        this._name = name;
+        this._email = email;
+        this._address = address;
+        this._postalCode = postalCode;
+        this._city = city;
+    }
 
     get name() {
         return this._name;
