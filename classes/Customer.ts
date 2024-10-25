@@ -2,7 +2,7 @@ class Customer {
     private _name: string = '';
     private _email: string = '';
     private _address: string = '';
-    private _postalCode: string = 0;
+    private _postalCode: string = '';
     private _city: string = '';
 
     get name() {
