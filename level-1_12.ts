@@ -22,6 +22,8 @@ chocolate.getTotalPrice(3);
 chocolate.printInfo();
 console.log(chocolate.getLengthOfDescription());
 
+const iceCreamArr: IceCreamFlavor[] = [vanilla, pistachio, chocolate];
+
 // =========================================
 //? -------------- DOM part ----------------
 // =========================================
@@ -42,22 +44,16 @@ const createIceCreamMenu = (iceCreamFlavor: IceCreamFlavor) => {
         <button class="addScoop">+1</button>
     `;
     showIceCreams.appendChild(iceCream);
-    
-    //* --------- Buttons Part ---------
-    const addButtons = document.querySelectorAll('.addScoop') as NodeListOf<HTMLButtonElement>;
-    addButtons.forEach((button) => {
-        let scoopsCounter: number = 0;
-        button.addEventListener('click', (e: Event) => {
-            const target = e.target as HTMLButtonElement;
-            const totalPrice = target.previousElementSibling as HTMLParagraphElement;
-            const scoops = totalPrice.previousElementSibling as HTMLParagraphElement;
 
-            scoopsCounter++;
-            scoops.textContent = `Scoops: ${scoopsCounter}`;
-            totalPrice.textContent = `Total Price: ${iceCreamFlavor.getTotalPrice(scoopsCounter)}`;
-        })
-    })
+    const addButton = iceCream.querySelector('.addScoop') as HTMLButtonElement;
+    const scoops = iceCream.querySelector('.scoops') as HTMLParagraphElement;
+    const totalPrice = iceCream.querySelector('.totalPrice') as HTMLParagraphElement;
+
+    let scoopsCounter: number = 0;
+    addButton.addEventListener('click', () => {
+        scoopsCounter++;
+        scoops.textContent = `Scoops: ${scoopsCounter}`;
+        totalPrice.textContent = `Total Price: ${iceCreamFlavor.getTotalPrice(scoopsCounter)} Euro`;
+    });
 }
-createIceCreamMenu(vanilla);
-createIceCreamMenu(pistachio);
-createIceCreamMenu(chocolate);
+iceCreamArr.forEach((iceCream) => createIceCreamMenu(iceCream));
